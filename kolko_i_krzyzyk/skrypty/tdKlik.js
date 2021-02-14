@@ -1,4 +1,0 @@
-function tdKlik()
-{
-	transmitMessage("Witam")
-}
