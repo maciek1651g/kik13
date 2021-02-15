@@ -1,10 +1,16 @@
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
+const http = require('http')
+const port = process.env.PORT || 3000
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+const handler = (req, res) => {
+	console.log("Nowy użyszkodnik")
+	res.end("<head><meta charset='UTF-8' /></head><body><h1>Witaj świecie</h1></body>")
+}
+
+const server = http.createServer(handler)
+
+server.listen(port, (error) => {
+	if(error)
+		console.log("Błąd włączania serwera!")
+	
+	console.log("Serwer uruchomiony")
+})
