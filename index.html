@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Hello world</title>
+   </head>
+   <!--<script src = "./skrypty/socket.io.min.js"></script> -->
+   <script src = "/socket.io/socket.io.js"></script>
+   <script>
+	   	//const socket = io();
+   		var socket = io();
+
+		socket.on('connect', () => {
+			alert("Połączono")
+		})
+		
+		socket.on('error', () => {
+			alert("Błąd połączenia")
+		})
+		
+		function transmitMessage(message) 
+		{
+			socket.send( message );
+		}
+		
+		socket.on('message', data => {
+			//console.log(data)
+			alert( data );
+		})
+
+		function toAll()
+		{
+			var text = document.getElementById("message").value
+			if(text && text!="")
+				transmitMessage(text)
+			document.getElementById("message").value = ""
+		}
+	</script>
+
+   <body>
+		<p>Message:</p>
+		<input id="message" type="text" />
+		<button onclick="toAll()">Wyślij wiadomość</button>
+   </body>
+</html>
