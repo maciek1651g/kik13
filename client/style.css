@@ -58,3 +58,9 @@ img
 	-moz-box-shadow: inset 0px 0px 13px 3px rgba(0,0,0,0.75);
 	box-shadow: inset 0px 0px 13px 3px rgba(0,0,0,0.75);
 }
+
+#message
+{
+	width:200px;
+	height: 30px;
+}
