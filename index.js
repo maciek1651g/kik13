@@ -3,39 +3,47 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000
-//const makeid = require('./makeid')
-var connections = []
-var NextId = 1
 
 //Routing
 app.use(express.static('client'))
 
 
 //Whenever someone connects this gets executed
-io.on('connection', function(from, req) {
+io.on('connection', function(socket) {
 	console.log('A user connected');
-	from.id = NextId++;
-	connections.push(from)
 
-	from.on('message', (msg) => {
+	socket.on('message', (msg) => {
+
+		var data = JSON.parse(msg)
+		const resMsg = require('./responseMSG')
+
+		switch(data.cmd)
+		{
+			case "join":
+				resMsg.joinRoom(socket, io, data.room)
+				break
+			case "leave":
+				resMsg.leaveRoom(socket, io, data.room)
+				break
+			case "ready":
+				resMsg.ready(socket, io, data.room)
+				break
+			case "move":
+				resMsg.move(socket, io, data.room, data.board)
+				break
+		}
+
         console.log(msg);
-		from.send(msg)
     });
 
 	//Whenever someone disconnects this piece of code executed
-	from.on('disconnect', function () 
+	socket.on('disconnect', function () 
 	{
-		for(var i=0;i<connections.length;i++)
-		{
-			if(connections[i].id==from.id)
-			{
-				connections.splice(i,1)
-			}
-		}
-	   console.log('A user disconnected');
+		console.log('A user disconnected');
 	});
  });
 
+ io.games = []
 
  //Run server
  http.listen(port, function() {

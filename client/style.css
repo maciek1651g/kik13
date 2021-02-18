@@ -59,8 +59,14 @@ img
 	box-shadow: inset 0px 0px 13px 3px rgba(0,0,0,0.75);
 }
 
-#message
+#buttony
+{
+	display: flex;
+	flex-direction: column;
+}
+
+#connect, #gotowosc, #kolej, #pokoj
 {
 	width:200px;
-	height: 30px;
+	text-align:center;
 }

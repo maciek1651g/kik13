@@ -7,11 +7,24 @@
 		<script src='./skrypty/tabNaTabele.js'></script>
 		<script src='./skrypty/tdKlik.js'></script>
 		<script src='./skrypty/socket.io.min.js'></script>
-		<script src='./skrypty/connection.js'></script>
+		<script src='./skrypty/getURL.js'></script>
+		<script src='./skrypty/updateView.js'></script>
+		<script src='./skrypty/transmision.js'></script>
 	</head>
 	<body>
 		<div id="kontener">
 			<div id="menu">
+				<div id="connect">
+				</div>
+				<div id="buttony">
+					<button onclick="joinToRoom()">Dołącz do pokoju</button>
+					<button onclick="leaveRoom()">Opuść pokój</button>
+					<button onclick="readyToGame()">Zgłoś gotowość do gry</button>
+				</div>
+				<div id="pokoj"></div>
+				<div id="gotowosc"></div>
+				<div id="kolej"></div>
+				
 			</div>
 			<div id="game">
 				
@@ -20,8 +33,8 @@
 				<tr><td class="tdKlikalne" onclick='tdKlik()'></td><td class="tdKlikalne" onclick='tdKlik()'></td><td class="tdKlikalne" onclick='tdKlik()'></td></tr>
 				<tr><td class="tdKlikalne" onclick='tdKlik()'></td><td class="tdKlikalne" onclick='tdKlik()'></td><td class="tdKlikalne" onclick='tdKlik()'></td></tr>
 				</table>
-				
 			</div>
 		</div>
+		<script src='./skrypty/connection.js'></script>
 	</body>
 </html>
